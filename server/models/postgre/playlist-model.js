@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../../db/postgre');
+const sequelize = require('../../db/postgresql');
 
 const Playlist = sequelize.define('Playlist', {
     name: {
@@ -13,8 +13,7 @@ const Playlist = sequelize.define('Playlist', {
     songs: {
         type: DataTypes.JSONB,
         allowNull: false
-    }
-}, {
+    },
     timestamps: true
 });
 

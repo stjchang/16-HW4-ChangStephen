@@ -42,9 +42,8 @@ class MongoDBManager extends DatabaseManager {
     }
 
     async createUser(userObject) {
-        const user = new User(userObject);
-        await user.save();        
-        return
+        return new User(userObject);
+        
     }
 
     async updateUserById(id, userObject) {
