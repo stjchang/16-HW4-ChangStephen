@@ -44,7 +44,6 @@
 
 const API_BASE = "http://localhost:4000/auth";
 
-
 // GET /loggedIn
 export async function getLoggedIn() {
     const url = `${API_BASE}/loggedIn/`;
@@ -86,7 +85,7 @@ export async function loginUser(email, password) {
         return result;
 
     } catch (error) {
-        console.error("loginUser error:", error.message);
+        console.error("log error:", error.message);
         throw error;
     }
 }
