@@ -7,8 +7,9 @@ const Playlist = require("../../models/postgreql/playlist-model");
 const User = require("../../models/postgresql/user-model");
 
 class PostgreSQLManager extends DatabaseManager {
-    constructor() {
+    constructor(uri) {
         super();
+        this.uri = uri
         this.db = null;
         this.User = null;
         this.Playlist = null;
@@ -16,7 +17,7 @@ class PostgreSQLManager extends DatabaseManager {
 
     async initialize() {
         try {
-            this.db = new sequelize(process.env.POSTGRE_URL, {
+            this.db = new sequelize(uri, {
                 dialect: "postgres",
                 logging: false,
             });
@@ -126,4 +127,4 @@ class PostgreSQLManager extends DatabaseManager {
         
 }
 
-module.exports = new PostgreSQLManager();
+module.exports = PostgreSQLManager;

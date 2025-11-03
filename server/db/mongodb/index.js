@@ -8,14 +8,15 @@ const Playlist = require("../../models/mongo/playlist-model");
 const User = require("../../models/mongo/user-model");
 
 class MongoDBManager extends DatabaseManager {
-    constructor() {
+    constructor(uri) {
         super();
         this.db = null;
+        this.uri = uri
     }
 
     async initialize() {
         try {
-            await mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
+            await mongoose.connect(this.uri, { useNewUrlParser: true });
             this.db = mongoose.connection;
             console.log("mongodb connected");
         } catch (error) {
@@ -105,4 +106,4 @@ class MongoDBManager extends DatabaseManager {
     }
 }
 
-module.exports = new MongoDBManager();
+module.exports = MongoDBManager;

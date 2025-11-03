@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 
 // CREATE OUR SERVER
 dotenv.config()
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000
 const app = express()
 
 // SETUP THE MIDDLEWARE
@@ -30,12 +30,25 @@ app.use('/store', storeRouter)
 // db.on('error', console.error.bind(console, 'Database connection error:'))
 
 const DatabaseManager = require('./db')
-const db = new DatabaseManager();
-db.initialize();
-db.on('error', console.error.bind(console, 'Database connection error:'))
+const db = new DatabaseManager(process.env.DB_CONNECT);
+db.initialize()
+
+// async function startServer() {
+//     try {
+//         db = new DatabaseManager();
+//         await db.initialize(); 
+
+//         console.log("Database initialized successfully.");
+
+//        // PUT THE SERVER IN LISTENING MODE
+//         app.listen(PORT, () => console.log(`Playlister Server running on port ${PORT}`))
+//     } catch (err) {
+//         console.error("Database connection error:", err);
+//         process.exit(1);
+//     }
+// }
+// startServer();
 
 
-// PUT THE SERVER IN LISTENING MODE
-app.listen(PORT, () => console.log(`Playlister Server running on port ${PORT}`))
 
 
