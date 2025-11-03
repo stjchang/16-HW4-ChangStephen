@@ -18,6 +18,15 @@
             "playlists": [
                 "68f526c4ec1ea2ad00a6fae8"
             ]
+        },
+        {
+            "firstName": "Stephen",
+            "lastName": "Chang",
+            "email": "changstephen289@gmail.com",
+            "passwordHash": "hashed123",
+            "playlists": [
+
+            ]
         }
     ],
     "playlists": [
@@ -207,6 +216,357 @@
                     "artist": "The Clash",
                     "year": 1979,
                     "youTubeId": "uEK9oK02D1M"
+                }
+            ]
+        },
+        {
+            "_id": "690849d288edfe01acc9f2fa",
+            "ownerEmail": "changstephen289@gmail.com",
+            "name": "Oldies",
+            "songs": [
+                {
+                    "title": "American Pie",
+                    "artist": "Don McLean",
+                    "year": 1971,
+                    "youTubeId": "iX_TFkut1PM"
+                },
+                {
+                    "title": "Closing Time",
+                    "artist": "Semisonic",
+                        "year": 1998,
+                    "youTubeId": "MZM3sj8H8Ig"
+                },
+                {
+                    "title": "Nightswimming",
+                    "artist": "R.E.M.",
+                    "year": 1992,
+                    "youTubeId": "c8vJpGpVhzM"
+                },
+                {
+                    "title": "Stacy’s Mom",
+                    "artist": "Fountains of Wayne",
+                    "year": 2003,
+                    "youTubeId": "H2di83WAOhU"
+                },
+                {
+                    "title": "It’s the End of the World as We Know It (And I Feel Fine)",
+                    "artist": "R.E.M.",
+                    "year": 1987,
+                    "youTubeId": "Y4-yX1bF6sQ"
+                },
+                {
+                    "title": "Come On Eileen",
+                    "artist": "Dexys Midnight Runners",
+                    "year": 1982,
+                    "youTubeId": "DE4CT0Q0R8I"
+                },
+                {
+                    "title": "Iris",
+                    "artist": "Goo Goo Dolls",
+                    "year": 1998,
+                    "youTubeId": "NdYWuo9OFAw"
+                },
+                {
+                    "title": "Anna Sun",
+                    "artist": "Walk the Moon",
+                    "year": 2012,
+                    "youTubeId": "qDVW81bXo0s"
+                },
+                {
+                    "title": "Mr. Brightside",
+                    "artist": "The Killers",
+                    "year": 2003,
+                    "youTubeId": "gGdGFtwCNBE"
+                },
+                {
+                    "title": "Forever Young",
+                    "artist": "Alphaville",
+                    "year": 1984,
+                    "youTubeId": "WjW3YXQKbIQ"
+                },
+                {
+                    "title": "Stairway to Heaven",
+                    "artist": "Led Zeppelin",
+                    "year": 1971,
+                    "youTubeId": "QkF3oxziUI4"
+                },
+                {
+                    "title": "In Your Eyes",
+                    "artist": "Peter Gabriel",
+                    "year": 1986,
+                    "youTubeId": "MyL5vRqZg5g"
+                },
+                {
+                    "title": "Don’t Stop Believin’",
+                    "artist": "Journey",
+                    "year": 1981,
+                    "youTubeId": "1k8craCGpgs"
+                },
+                {
+                    "title": "Careless Whisper",
+                    "artist": "George Michael",
+                    "year": 1984,
+                    "youTubeId": "izGwDsrQ1eQ"
+                },
+                {
+                    "title": "Fast Car",
+                    "artist": "Tracy Chapman",
+                    "year": 1988,
+                    "youTubeId": "uTIB10eQnA0"
+                },
+                {
+                    "title": "Vincent (Starry Starry Night)",
+                    "artist": "Don McLean",
+                    "year": 1972,
+                    "youTubeId": "A3DUsxOIZi4"
+                }
+            ]
+        },
+        {
+            "_id": "690849d288edfe01acc9f2fb",
+            "ownerEmail": "changstephen289@gmail.com",
+            "name": "My Favorite Songs",
+            "songs": [
+                {
+                "title": "My Favourite Clothes",
+                "artist": "RINI",
+                "year": 2018,
+                "youTubeId": "oNIBAL8x9-4"
+                },
+                {
+                "title": "3:15",
+                "artist": "Bazzi",
+                "year": 2018,
+                "youTubeId": "xwIKpc7chs0"
+                },
+                {
+                "title": "urs",
+                "artist": "NIKI",
+                "year": 2019,
+                "youTubeId": "SDq3_D_LC78"
+                },
+                {
+                "title": "blue",
+                "artist": "keshi",
+                "year": 2020,
+                "youTubeId": "o3zVtbw0VDM"
+                },
+                {
+                "title": "Don't Wanna Fall in Love",
+                "artist": "KYLE",
+                "year": 2014,
+                "youTubeId": "yWiKGctibjk"
+                },
+                {
+                "title": "Paranoia",
+                "artist": "The Marías",
+                "year": 2023,
+                "youTubeId": "thB6wpwJYEk"
+                },
+                {
+                "title": "Forever Right Now",
+                "artist": "Conor Matthews",
+                "year": 2018,
+                "youTubeId": "BmmBOt02Zh4"
+                },
+                {
+                "title": "Beautiful Now (feat. Jon Bellion)",
+                "artist": "Zedd",
+                "year": 2015,
+                "youTubeId": "n1a7o44WxNo"
+                },
+                {
+                "title": "ANGOSTURA",
+                "artist": "keshi",
+                "year": 2022,
+                "youTubeId": "SqFJEIT35k8"
+                },
+                {
+                "title": "Every Summertime",
+                "artist": "NIKI",
+                "year": 2021,
+                "youTubeId": "a0OHkWX7B-E"
+                },
+                {
+                "title": "Paragraphs",
+                "artist": "Luke Chiang",
+                "year": 2019,
+                "youTubeId": "FPNmQmpqpI8"
+                },
+                {
+                "title": "Silver Lining",
+                "artist": "grentperez",
+                "year": 2023,
+                "youTubeId": "FlZc7oRUEk4"
+                },
+                {
+                "title": "Regent's Park",
+                "artist": "Bruno Major",
+                "year": 2020,
+                "youTubeId": "sSvAFjpLaGA"
+                },
+                {
+                "title": "love.",
+                "artist": "wave to earth",
+                "year": 2023,
+                "youTubeId": "Q49pnA4jsp8"
+                },
+                {
+                "title": "White Ferrari",
+                "artist": "Frank Ocean",
+                "year": 2016,
+                "youTubeId": "Dlz_XHeUUis"
+                },
+                {
+                "title": "DIE 4 YOU",
+                "artist": "DEAN",
+                "year": 2023,
+                "youTubeId": "SctIHP5dPyM"
+                },
+                {
+                "title": "Infrunami",
+                "artist": "Steve Lacy",
+                "year": 2020,
+                "youTubeId": "Ol0-9Ob-QNk"
+                },
+                {
+                "title": "DtMF",
+                "artist": "Bad Bunny",
+                "year": 2025,
+                "youTubeId": "Tw08lNebAjE"
+                },
+                {
+                "title": "For Tonight",
+                "artist": "GIVĒON",
+                "year": 2022,
+                "youTubeId": "JRoam571b58"
+                }
+            ] 
+        },
+        { 
+            "_id": "690849d288edfe01acc9f2fc",
+            "ownerEmail": "changstephen289@gmail.com",
+            "name": "Interesting Songs",
+            "songs": [
+                {
+                    "title": "Miss Summer",
+                    "artist": "ODIE",
+                    "year": 2020,
+                    "youTubeId": "zkpGqtAbhoo"
+                },
+                {
+                    "title": "Shut Up My Mom's Calling",
+                    "artist": "Hotel Ugly",
+                    "year": 2021,
+                    "youTubeId": "HVmpI3d11oM"
+                },
+                {
+                    "title": "ARE WE STILL FRIENDS?",
+                    "artist": "Tyler, The Creator",
+                    "year": 2019,
+                    "youTubeId": "Gb76TgCUqAY"
+                },
+                {
+                    "title": "2516",
+                    "artist": "Luna Li",
+                    "year": 2021,
+                    "youTubeId": "l2iNWCSO1d8"
+                },
+                {
+                    "title": "Binibini",
+                    "artist": "Zack Tabudlo",
+                    "year": 2021,
+                    "youTubeId": "DhzDmhytrTI"
+                },
+                {
+                    "title": "Killswitch Lullaby",
+                    "artist": "Flawed Mangoes",
+                    "year": 2023,
+                    "youTubeId": "Hn4YTL_OlUA"
+                },
+                {
+                    "title": "4:44",
+                    "artist": "JAY-Z",
+                    "year": 2017,
+                    "youTubeId": "UMqr0NjQprE"
+                },
+                {
+                    "title": "Stan",
+                    "artist": "Eminem ft. Dido",
+                    "year": 2000,
+                    "youTubeId": "gOMhN-hfMtY"
+                },
+                {
+                    "title": "Snow on tha Bluff",
+                    "artist": "J. Cole",
+                    "year": 2020,
+                    "youTubeId": "QwM7z5V4a6I"
+                },
+                {
+                    "title": "Denver",
+                    "artist": "Jack Harlow",
+                    "year": 2022,
+                    "youTubeId": "0pQjFhXjVh8"
+                },
+                {
+                    "title": "From Time",
+                    "artist": "Drake ft. Jhené Aiko",
+                    "year": 2013,
+                    "youTubeId": "7m7j2k2hX2Y"
+                },
+                {
+                    "title": "100 Degrees",
+                    "artist": "Rich Brian",
+                    "year": 2022,
+                    "youTubeId": "3j6z6e2yZ2Q"
+                },
+                {
+                    "title": "I Hope It's Cold in New York",
+                    "artist": "The Chainsmokers",
+                    "year": 2016,
+                    "youTubeId": "F8v7hJ4y3uY"
+                },
+                {
+                    "title": "When Will I See You Again",
+                    "artist": "Shakka ft. Wretch 32 & Jacob Banks",
+                    "year": 2015,
+                    "youTubeId": "6j7z6e2yZ2Q"
+                },
+                {
+                    "title": "I Really Want to Stay at Your House",
+                    "artist": "ROSALÍA",
+                    "year": 2020,
+                    "youTubeId": "B6g8z6e2yZ2Q"
+                },
+                {
+                    "title": "Leray",
+                    "artist": "Trippie Redd",
+                    "year": 2021,
+                    "youTubeId": "C8h8z6e2yZ2Q"
+                },
+                {
+                    "title": "I",
+                    "artist": "Jaden Smith",
+                    "year": 2014,
+                    "youTubeId": "D8h8z6e2yZ2Q"
+                },
+                {
+                    "title": "44 More",
+                    "artist": "Logic",
+                    "year": 2018,
+                    "youTubeId": "D8h8z6e2yZ2Q"
+                },
+                {
+                    "title": "Lemonade",
+                    "artist": "Jeremy Passion",
+                    "year": 2011,
+                    "youTubeId": "D8h8z6e2yZ2Q"
+                },
+                {
+                    "title": "Sagittarius",
+                    "artist": "88rising ft. Joji & Higher Brothers",
+                    "year": 2018,
+                    "youTubeId": "D8h8z6e2yZ2Q"
                 }
             ]
         }
