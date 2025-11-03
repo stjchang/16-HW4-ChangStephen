@@ -1,18 +1,4 @@
 
-// const mongoose = require('mongoose')
-// const dotenv = require('dotenv')
-// dotenv.config();
-
-// mongoose
-//     .connect(process.env.DB_CONNECT, { useNewUrlParser: true })
-//     .catch(e => {
-//         console.error('Connection error', e.message)
-//     })
-
-// const db = mongoose.connection
-
-// module.exports = db
-
 const DatabaseManager = require("../database-manager");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -22,7 +8,7 @@ const Playlist = require("../../models/mongo/playlist-model");
 const User = require("../../models/mongo/user-model");
 
 class MongoDBManager extends DatabaseManager {
-    constructer() {
+    constructor() {
         super();
         this.db = null;
     }
@@ -42,7 +28,7 @@ class MongoDBManager extends DatabaseManager {
             await mongoose.connection.close();
             console.log("mongodb connection closed");
         } catch (error) {
-            console.error('error disconnecting mongodb', error.message);
+            console.error('error disconnecting mongodb: ', error.message);
         }
     }
 
@@ -91,7 +77,7 @@ class MongoDBManager extends DatabaseManager {
                 name: playlist.name,
             }));
         } catch (error) {
-            console.error('getPlaylistPairs error:', error.message);
+            console.error('getPlaylistPairs error: ', error.message);
         }
     }
 
