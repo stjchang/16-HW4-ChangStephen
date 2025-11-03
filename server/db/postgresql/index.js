@@ -1,4 +1,4 @@
-const DatabaseManager = require("../DatabaseManager.js");
+const DatabaseManager = require("../DatabaseManager");
 const sequelize = require("sequilize")
 const dotenv = require("dotenv");
 dotenv.config();
@@ -95,6 +95,10 @@ class PostgreSQLManager extends DatabaseManager {
 
     async getPlaylistById(id) { 
         return await this.Playlist.findByPk(id);
+    }
+
+    async getAllPlaylists() {
+        return await this.Playlist.findAll();
     }
 
     async getPlaylistPairs() {

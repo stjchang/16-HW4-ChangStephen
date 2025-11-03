@@ -1,5 +1,5 @@
 
-const DatabaseManager = require("../database-manager");
+const DatabaseManager = require("../DatabaseManager");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -69,7 +69,23 @@ class MongoDBManager extends DatabaseManager {
     }
 
     async getPlaylistById(id) {
-        return await Playlist.findById(id);
+        try {
+            const playlist = await Playlist.findById(id);
+            return playlist;
+        } catch (error) {
+            console.error('getPlaylistById error: ', error.message);
+            throw error;
+        }
+        
+    }
+
+    async getAllPlaylists() {
+        try {
+            return await Playlist.find({});
+        } catch (error) {
+            console.error('getAllPlaylists error: ', error.message);
+            throw error;
+        }
     }
 
     async getPlaylistPairs() {

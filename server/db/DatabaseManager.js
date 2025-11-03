@@ -44,6 +44,10 @@ class DatabaseManager {
     async getPlaylistById(id) { 
         throw new Error("getPlaylistById() not implemented");
     }
+    
+    async getAllPlaylists() {
+        throw new Error("getAllPlaylists() not implemented");
+    }
 
     async getPlaylistPairs() {
         throw new Error("getPlaylistPairs() not implemented");
