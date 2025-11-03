@@ -62,6 +62,11 @@ class PostgreSQLManager extends DatabaseManager {
         return await this.User.findOne({where: { email }});
     }
 
+    async getUserById(id) {
+        return await this.User.findByPk(id);
+    }
+    
+
     async createUser(userObject) {
         return await this.User.create(userObject);
     }

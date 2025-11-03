@@ -13,9 +13,15 @@ class DatabaseManager {
         throw new Error("getUserByEmail() not implemented");
     }
 
+    async getUserById(id) {
+        throw new Error("getUserById() not implemented");
+    }
+
     async createUser(userObject) {
         throw new Error("createUser() not implemented");
     }
+
+    // dont want to update by email incase the email is being changed
 
     async updateUserById(id, userObject) {
         throw new Error("updateUserById() not implemented");
