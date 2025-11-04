@@ -75,7 +75,9 @@ loginUser = async (req, res) => {
         }
 
         // LOGIN THE USER
-        const token = auth.signToken(existingUser._id);
+        const userId = existingUser._id || existingUser.id;
+        const token = auth.signToken(userId);
+        console.log("userId: " + userId);
         console.log(token);
 
         res.cookie("token", token, {
@@ -150,10 +152,11 @@ registerUser = async (req, res) => {
         console.log("passwordHash: " + passwordHash);
 
         const savedUser = await db.createUser({firstName, lastName, email, passwordHash});
-        console.log("new user saved: " + savedUser._id);
+        const userId = savedUser._id || savedUser.id;
+        console.log("new user saved: " + userId);
 
         // LOGIN THE USER
-        const token = auth.signToken(savedUser._id);
+        const token = auth.signToken(userId);
         console.log("token:" + token);
 
         res.cookie("token", token, {

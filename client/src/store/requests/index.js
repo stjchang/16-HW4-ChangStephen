@@ -138,7 +138,8 @@ export async function getPlaylistPairs() {
 
 // put /playlist/:id
 export async function updatePlaylist(id, playlist) {
-    const url = `${API_BASE}/playlist/${id}`;
+    const playlistId = id || playlist?.id || playlist?._id;
+    const url = `${API_BASE}/playlist/${playlistId}`;
     try {
         const response = await fetch(url, {
             method: "PUT",

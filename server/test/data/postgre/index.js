@@ -14,10 +14,18 @@ async function clearTable(model, tableName) {
 
 async function fillTable(model, tableName, data) {
     try {
-        await model.bulkCreate(data);
-        console.log(tableName + " filled");
+        const convertedData = data.map(item => {
+            const converted = { ...item };
+            if (converted._id) {
+                delete converted._id;
+            }
+            return converted;
+        });
+        await model.bulkCreate(convertedData);
     } catch (err) {
-        console.log(err);
+        if (err.errors) {
+            console.error('postgre fillTable errors:', err.errors);
+        }
     }
 }
 
@@ -38,8 +46,8 @@ async function resetPostgre() {
 
     await clearTable(dbManager.Playlist, "Playlist");
     await clearTable(dbManager.User, "User");
-    await fillTable(dbManager.Playlist, "Playlist", testData.playlists);
     await fillTable(dbManager.User, "User", testData.users);
+    await fillTable(dbManager.Playlist, "Playlist", testData.playlists);
     
     await dbManager.close();
 }

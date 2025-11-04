@@ -39,8 +39,12 @@ const createPlaylist = async (req, res) => {
         if (!playlist) {
             return res.status(400).json({ success: false, error: 'Playlist could not be created' })
         }
-        user.playlists.push(playlist._id);
-        await db.updateUserById(user._id, user);
+        const playlistId = playlist._id || playlist.id;
+        const userId = user._id || user.id;
+        if (user.playlists) {
+            user.playlists.push(playlistId);
+            await db.updateUserById(userId, user);
+        }
 
         return res.status(201).json({
             playlist: playlist
@@ -76,7 +80,8 @@ const deletePlaylist = async (req, res) => {
             })
         }
 
-        if (owner._id != req.userId) { 
+        const ownerId = owner._id || owner.id;
+        if (ownerId != req.userId) { 
             console.log("incorrect user!");
             return res.status(400).json({
                 errorMessage: 'Authentication error'
@@ -124,10 +129,11 @@ const getPlaylistById = async (req, res) => {
             })
         }
 
-        console.log("user._id: " + user._id);
+        const userId = user._id || user.id;
+        console.log("user.id: " + userId);
         console.log("req.userId: " + req.userId);
 
-        if (user._id == req.userId) {
+        if (userId == req.userId) {
             console.log("correct user!");
             return res.status(200).json({
                 success: true,
@@ -229,7 +235,8 @@ const updatePlaylist = async (req, res) => {
         }
 
         const userId = auth.verifyUser(req);
-        if (owner._id != userId) {
+        const ownerId = owner._id || owner.id;
+        if (ownerId != userId) {
             return res.status(400).json({
                 errorMessage: 'Authentication error'
             })

@@ -104,20 +104,8 @@ class PostgreSQLManager extends DatabaseManager {
 
     //playlists
 
-    // Helper to normalize Sequelize model to have _id for MongoDB compatibility
-    _normalizePlaylist(playlist) {
-        if (!playlist) return null;
-        const data = playlist.get ? playlist.get({ plain: true }) : playlist;
-        return {
-            ...data,
-            _id: data.id || data._id,
-            id: undefined // Remove id to avoid confusion
-        };
-    }
-
     async createPlaylist(playlistObject) {
-        const playlist = await this.Playlist.create(playlistObject);
-        return this._normalizePlaylist(playlist);
+        return await this.Playlist.create(playlistObject);
     }
 
     async deletePlaylistById(id) {
@@ -125,8 +113,7 @@ class PostgreSQLManager extends DatabaseManager {
     }
 
     async getPlaylistById(id) { 
-        const playlist = await this.Playlist.findByPk(id);
-        return this._normalizePlaylist(playlist);
+        return await this.Playlist.findByPk(id);
     }
 
     async getAllPlaylists() {
@@ -138,6 +125,7 @@ class PostgreSQLManager extends DatabaseManager {
             const playlists = await this.Playlist.findAll({
                 where: { ownerEmail: ownerEmail },
                 attributes: ['id', 'name'],
+                raw: true,
             });
 
             return playlists.map((playlist) => ({
@@ -145,7 +133,6 @@ class PostgreSQLManager extends DatabaseManager {
                 name: playlist.name,
             }));
         } catch (error) {
-            console.error('getPlaylistPairs error: ', error.message);
             throw error;
         }
     }
