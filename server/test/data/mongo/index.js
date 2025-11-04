@@ -1,4 +1,3 @@
-const dotenv = require('dotenv').config({ path: __dirname + '/../../../.env' });
 
 async function clearCollection(collection, collectionName) {
     try {

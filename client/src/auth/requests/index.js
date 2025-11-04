@@ -46,7 +46,7 @@ const API_BASE = "http://localhost:4000/auth";
 
 // GET /loggedIn
 export async function getLoggedIn() {
-    const url = `${API_BASE}/loggedIn/`;
+    const url = `${API_BASE}/loggedIn`;
     try {
         const response = await fetch(url, {
             method: "GET",
@@ -68,7 +68,7 @@ export async function getLoggedIn() {
 
 // POST /login
 export async function loginUser(email, password) {
-    const url = `${API_BASE}/login/`;
+    const url = `${API_BASE}/login`;
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -77,11 +77,14 @@ export async function loginUser(email, password) {
             credentials: "include",
         });
 
+        const result = await response.json();
+
         if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+            const error = new Error(result.errorMessage || `Response status: ${response.status}`);
+            error.data = result;
+            throw error;
         }
 
-        const result = await response.json();
         return result;
 
     } catch (error) {
@@ -92,7 +95,7 @@ export async function loginUser(email, password) {
 
 // GET /logout
 export const logoutUser = async () => {
-    const url = `${API_BASE}/logout/`;
+    const url = `${API_BASE}/logout`;
     try {
         const response = await fetch(url, {
             method: "GET",
@@ -103,8 +106,7 @@ export const logoutUser = async () => {
             throw new Error(`Response status: ${response.status}`);
         }
 
-        const result = await response.json();
-        return result;      
+        return { success: true };      
         
     } catch (error) {
         console.error("logoutUser error:", error.message);
@@ -114,7 +116,7 @@ export const logoutUser = async () => {
 
 // POST /register
 export const registerUser = async(firstName, lastName, email, password, passwordVerify) => {
-    const url = `${API_BASE}/register/`;
+    const url = `${API_BASE}/register`;
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -123,11 +125,14 @@ export const registerUser = async(firstName, lastName, email, password, password
             credentials: "include",
         });
 
+        const result = await response.json();
+
         if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+            const error = new Error(`Response status: ${response.status}`);
+            error.data = result;
+            throw error;
         }
 
-        const result = await response.json();
         return result;
 
     } catch (error) {

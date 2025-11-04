@@ -44,7 +44,7 @@ const API_BASE = "http://localhost:4000/store";
 
 //Post /playlist
 export async function createPlaylist(newListName, newSongs, userEmail) {
-    const url = `${API_BASE}/playlist/`;
+    const url = `${API_BASE}/playlist`;
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -71,7 +71,7 @@ export async function createPlaylist(newListName, newSongs, userEmail) {
 }
 
 //delete /playlist/:id
-export async function deletePlaylistById(id) {
+export async function deletePlaylist(id) {
     const url = `${API_BASE}/playlist/${id}`;
     try {
         const response = await fetch(url, {
@@ -116,7 +116,7 @@ export async function getPlaylistById(id) {
 
 // get /playlistpairs
 export async function getPlaylistPairs() {
-    const url = `${API_BASE}/playlistpairs/`;
+    const url = `${API_BASE}/playlistpairs`;
     try {
         const response = await fetch(url, {
             method: "GET",
@@ -137,7 +137,7 @@ export async function getPlaylistPairs() {
 }
 
 // put /playlist/:id
-export async function updatePlaylistById(id, playlist) {
+export async function updatePlaylist(id, playlist) {
     const url = `${API_BASE}/playlist/${id}`;
     try {
         const response = await fetch(url, {
@@ -161,10 +161,10 @@ export async function updatePlaylistById(id, playlist) {
 
 const apis = {
     createPlaylist,
-    deletePlaylistById,
+    deletePlaylist,
     getPlaylistById,
     getPlaylistPairs,
-    updatePlaylistById
+    updatePlaylist
 }
 
 export default apis

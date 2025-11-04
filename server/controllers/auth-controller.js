@@ -2,7 +2,10 @@ require('dotenv').config();
 const auth = require('../auth');
 // const User = require('../models/user-model')
 const bcrypt = require('bcryptjs');
-const db = require('../db');
+
+const DatabaseManager = require('../db');
+const db = new DatabaseManager(process.env.DB_CONNECT);
+// const db = require('../db');
 
 getLoggedIn = async (req, res) => {
     try {
@@ -17,6 +20,13 @@ getLoggedIn = async (req, res) => {
 
         const loggedInUser = await db.getUserById(userId);
         console.log("loggedInUser: " + loggedInUser);
+        if(!loggedInUser) {
+            return res.status(200).json({
+                loggedIn: false,
+                user: null,
+                errorMessage: "user not found"
+            })
+        }
 
         return res.status(200).json({
             loggedIn: true,
@@ -139,15 +149,14 @@ registerUser = async (req, res) => {
         const passwordHash = await bcrypt.hash(password, salt);
         console.log("passwordHash: " + passwordHash);
 
-        const newUser = db.createUser({firstName, lastName, email, passwordHash});
-        const savedUser = await newUser.save();
+        const savedUser = await db.createUser({firstName, lastName, email, passwordHash});
         console.log("new user saved: " + savedUser._id);
 
         // LOGIN THE USER
         const token = auth.signToken(savedUser._id);
         console.log("token:" + token);
 
-        await res.cookie("token", token, {
+        res.cookie("token", token, {
             httpOnly: true,
             secure: true,
             sameSite: "none"

@@ -23,11 +23,13 @@
             "firstName": "Stephen",
             "lastName": "Chang",
             "email": "changstephen289@gmail.com",
-            "passwordHash": "hashed123",
+            "passwordHash": "$2a$10$TEB3jkpF4aYzx.gLZhTx9eQd/nZ5J/EGJk6bjBin49vWTlGZrg1Ma",
             "playlists": [
-
+                "690849d288edfe01acc9f2fa",
+                "690849d288edfe01acc9f2fb",
+                "690849d288edfe01acc9f2fc"
             ]
-        }
+        } 
     ],
     "playlists": [
         {

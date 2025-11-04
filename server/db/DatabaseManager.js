@@ -49,7 +49,7 @@ class DatabaseManager {
         throw new Error("getAllPlaylists() not implemented");
     }
 
-    async getPlaylistPairs() {
+    async getPlaylistPairs(ownerEmail) {
         throw new Error("getPlaylistPairs() not implemented");
     }
 

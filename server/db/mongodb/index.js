@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const ObjectId = mongoose.Types.ObjectId;
+
 const Playlist = require("../../models/mongo/playlist-model");
 const User = require("../../models/mongo/user-model");
 
@@ -39,12 +41,14 @@ class MongoDBManager extends DatabaseManager {
     }
     
     async getUserById(id) {
-        return await User.findById(id);
+        // Convert string id to ObjectId if needed
+        const objectId = id instanceof mongoose.Types.ObjectId ? id : new mongoose.Types.ObjectId(id);
+        return await User.findById(objectId).lean();
     }
 
     async createUser(userObject) {
-        return new User(userObject);
-        
+        const newUser = new User(userObject);
+        return await newUser.save();
     }
 
     async updateUserById(id, userObject) {
@@ -89,15 +93,16 @@ class MongoDBManager extends DatabaseManager {
         }
     }
 
-    async getPlaylistPairs() {
+    async getPlaylistPairs(ownerEmail) {
         try {
-            const playlists = await Playlist.find({}, '_id name');
+            const playlists = await Playlist.find({ ownerEmail: ownerEmail }, '_id name');
             return playlists.map((playlist) => ({
                 _id: playlist._id,
                 name: playlist.name,
             }));
         } catch (error) {
             console.error('getPlaylistPairs error: ', error.message);
+            throw error;
         }
     }
 

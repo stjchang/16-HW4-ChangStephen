@@ -102,9 +102,10 @@ class PostgreSQLManager extends DatabaseManager {
         return await this.Playlist.findAll();
     }
 
-    async getPlaylistPairs() {
+    async getPlaylistPairs(ownerEmail) {
         try {
             const playlists = await this.Playlist.findAll({
+                where: { ownerEmail: ownerEmail },
                 attributes: ['id', 'name'],
             });
 
@@ -114,6 +115,7 @@ class PostgreSQLManager extends DatabaseManager {
             }));
         } catch (error) {
             console.error('getPlaylistPairs error: ', error.message);
+            throw error;
         }
     }
 
