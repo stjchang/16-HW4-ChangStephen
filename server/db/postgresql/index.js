@@ -1,29 +1,50 @@
 const DatabaseManager = require("../DatabaseManager");
-const sequelize = require("sequilize")
+const { Sequelize } = require("sequelize")
 const dotenv = require("dotenv");
 dotenv.config();
 
-const Playlist = require("../../models/postgreql/playlist-model");
-const User = require("../../models/postgresql/user-model");
+const Playlist = require("../../models/postgre/playlist-model");
+const User = require("../../models/postgre/user-model");
 
 class PostgreSQLManager extends DatabaseManager {
     constructor(uri) {
         super();
         this.uri = uri
         this.db = null;
-        this.User = null;
-        this.Playlist = null;
+        this.User = User;
+        this.Playlist = Playlist;
     }
 
     async initialize() {
         try {
-            this.db = new sequelize(uri, {
-                dialect: "postgres",
-                logging: false,
+            // this.db = new Sequelize(uri, {
+            //     dialect: "postgres",
+            //     logging: false,
+            // });
+
+            this.db = new Sequelize(
+                process.env.POSTGRES_DB_NAME,
+                process.env.POSTGRES_USER,
+                process.env.POSTGRES_PASSWORD,
+                {
+                    host: process.env.POSTGRES_HOST,
+                    dialect: "postgres",
+                    logging: false,
+                }
+            )
+
+            User.init(User.columns, { 
+                sequelize: this.db, 
+                modelName: 'User', 
+                timestamps: true 
             });
 
-            this.User = User(this.db);
-            this.Playlist = Playlist(this.db);
+            Playlist.init(Playlist.columns, { 
+                sequelize: this.db, 
+                modelName: 'Playlist', 
+                timestamps: true 
+            });
+
 
             this.User.hasMany(this.Playlist, {
                 foreignKey: "ownerEmail",
@@ -49,14 +70,11 @@ class PostgreSQLManager extends DatabaseManager {
     }
 
     async close() {
-        try {
+        if (this.db) {
             await this.db.close();
             console.log("postgresql connection closed");
-        } catch (error) {
-            console.error('Error disconnecting postgresql: ', error.message);
         }
     }
-
     //users
 
     async getUserByEmail(email) {
@@ -86,8 +104,20 @@ class PostgreSQLManager extends DatabaseManager {
 
     //playlists
 
+    // Helper to normalize Sequelize model to have _id for MongoDB compatibility
+    _normalizePlaylist(playlist) {
+        if (!playlist) return null;
+        const data = playlist.get ? playlist.get({ plain: true }) : playlist;
+        return {
+            ...data,
+            _id: data.id || data._id,
+            id: undefined // Remove id to avoid confusion
+        };
+    }
+
     async createPlaylist(playlistObject) {
-        return await this.Playlist.create(playlistObject);
+        const playlist = await this.Playlist.create(playlistObject);
+        return this._normalizePlaylist(playlist);
     }
 
     async deletePlaylistById(id) {
@@ -95,7 +125,8 @@ class PostgreSQLManager extends DatabaseManager {
     }
 
     async getPlaylistById(id) { 
-        return await this.Playlist.findByPk(id);
+        const playlist = await this.Playlist.findByPk(id);
+        return this._normalizePlaylist(playlist);
     }
 
     async getAllPlaylists() {
@@ -130,3 +161,4 @@ class PostgreSQLManager extends DatabaseManager {
 }
 
 module.exports = PostgreSQLManager;
+// module.exports = sequelize;

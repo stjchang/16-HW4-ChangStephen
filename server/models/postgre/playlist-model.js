@@ -1,7 +1,8 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../../db/postgresql');
+const { DataTypes, Model } = require('sequelize');
 
-const Playlist = sequelize.define('Playlist', {
+class Playlist extends Model {}
+
+Playlist.columns = {
     name: {
         type: DataTypes.STRING,
         allowNull: false
@@ -13,8 +14,7 @@ const Playlist = sequelize.define('Playlist', {
     songs: {
         type: DataTypes.JSONB,
         allowNull: false
-    },
-    timestamps: true
-});
+    }
+};
 
 module.exports = Playlist;

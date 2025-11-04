@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../../db/postgresql');
-const Playlist = require('../playlist-model');
+const { DataTypes, Model} = require('sequelize');
 
-const User = sequelize.define('User', {
+class User extends Model {}
+
+User.columns = {
     firstName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -20,8 +20,5 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false  
     }
-}, {
-    timestamps: true
-});
-
+};
 module.exports = User;
