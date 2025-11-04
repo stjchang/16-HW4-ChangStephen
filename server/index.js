@@ -33,6 +33,12 @@ const DatabaseManager = require('./db')
 const db = new DatabaseManager(process.env.DB_CONNECT);
 db.initialize()
 
+
+
+// PUT THE SERVER IN LISTENING MODE
+app.listen(PORT, () => console.log(`Playlister Server running on port ${PORT}`))
+
+
 // async function startServer() {
 //     try {
 //         db = new DatabaseManager();

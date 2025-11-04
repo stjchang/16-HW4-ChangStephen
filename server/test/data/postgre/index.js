@@ -69,6 +69,7 @@ async function resetPostgre() {
     console.log("Resetting the PostgreSQL DB");
     await sequelize.authenticate();
     await sequelize.sync({ force: false });
+    
     await clearTable(Playlist, "Playlist");
     await clearTable(User, "User");
     await fillTable(Playlist, "Playlist", testData.playlists);
