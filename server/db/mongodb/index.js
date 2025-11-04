@@ -41,9 +41,14 @@ class MongoDBManager extends DatabaseManager {
     }
     
     async getUserById(id) {
-        // Convert string id to ObjectId if needed
-        const objectId = id instanceof mongoose.Types.ObjectId ? id : new mongoose.Types.ObjectId(id);
-        return await User.findById(objectId);
+        const user = await User.findById(id);
+        if(!user) {
+            console.error("User not found");
+            return null;
+        }
+
+        return user;
+
     }
 
     async createUser(userObject) {
@@ -74,14 +79,14 @@ class MongoDBManager extends DatabaseManager {
     }
 
     async getPlaylistById(id) {
-        try {
-            const playlist = await Playlist.findById(id);
-            return playlist;
-        } catch (error) {
-            console.error('getPlaylistById error: ', error.message);
-            throw error;
-        }
+        const playlist = await Playlist.findById(id);
         
+        if(!playlist) {
+            console.error("Playlist not found");
+            return null;
+        }
+
+        return playlist;
     }
 
     async getAllPlaylists() {

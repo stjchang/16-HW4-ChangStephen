@@ -39,7 +39,7 @@ beforeEach( () => {
 /**
  * Executed after each test is performed.
  */
-afterEach( () => {
+afterEach( async () => {
 });
 
 /**
@@ -52,7 +52,7 @@ afterAll(async () => {
 /**
  * Vitest test to see if the Database Manager can get a User.
  */
-test('Test #1) Reading a User from the Database', async () => {
+test('Test #1) Reading a User by id from the Database', async () => {
     // FILL IN A USER WITH THE DATA YOU EXPECT THEM TO HAVE
     const expectedUser = {
         firstName: 'Joe',
@@ -177,18 +177,15 @@ test('Test #4) Deleting a User in the Database', async () => {
     const createdUser = await dbManager.createUser(testUser);
     // NEXT TEST TO SEE IF IT WAS PROPERLY CREATED
 
-
     // THIS WILL STORE THE DATA RETRUNED BY A READ USER
     // READ THE USER
     // actualUser = dbManager.somethingOrOtherToGetAUser(...)
     const deletedUser = await dbManager.deleteUserById(createdUser.id);
     expect(deletedUser).toBeDefined();
     // CHECKED TO SEE IF WE DELETED AN ACTUAL USER (SHOULD RETURN A DEFINED OBJECT)
-    const actualUser = await dbManager.getUserById(createdUser.id);
-    expect(actualUser).toBeDefined();
-
     // WHEN SEARCHING FOR THE USER, IT IS DELETED.
-    expect(await dbManager.getUserById(createdUser.id)).toBeNull();
+    const actualUser = await dbManager.getUserById(createdUser.id);
+    expect(actualUser).toBeNull();
     
 });
 
@@ -274,12 +271,133 @@ test('Test #7) Getting Playlist in the Database', async () => {
                 youTubeId: '90M60PzmxEE'
             }
         ]
-    };
+    }
 
     const actualPlaylist = await dbManager.getPlaylistById(expectedPlaylist.id);
-    expect(actualPlaylist).toBeDefined();
 
     expect(expectedPlaylist.name, actualPlaylist.name);
     expect(expectedPlaylist.ownerEmail, actualPlaylist.ownerEmail);
     expect(expectedPlaylist.songs, actualPlaylist.songs);
+});
+
+test('Test #8) Updating a Playlist in the Database', async () => {
+    const testPlaylist = {
+        id: '68f526c1ec1ea2ad00a6fae0',
+        name: 'Test Playlist',
+        ownerEmail: 'joe@shmo.com',
+        songs: [
+            {
+                title: 'Across the Universe',
+                artist: 'The Beatles',
+                year: 1969,
+                youTubeId: '90M60PzmxEE'
+            }
+        ]
+    };
+
+    const createdPlaylist = await dbManager.createPlaylist(testPlaylist);
+
+    const updatedPlaylistObject = {
+        id: createdPlaylist.id,
+        name: 'Updated Test Playlist',
+        ownerEmail: 'joe@shmo.com',
+        songs: [
+            {
+                title: 'Across the Universe',
+                artist: 'The Beatles',
+                year: 1969,
+                youTubeId: '90M60PzmxEE'
+            }
+        ]
+    };
+    
+
+    const updatedPlaylist = await dbManager.updatePlaylistById(createdPlaylist.id, updatedPlaylistObject);
+
+    const actualPlaylist = await dbManager.getPlaylistById(updatedPlaylist.id);
+    expect(actualPlaylist).toBeDefined();
+
+    expect(updatedPlaylistObject.name, actualPlaylist.name);
+    expect(updatedPlaylistObject.ownerEmail, actualPlaylist.ownerEmail);
+    expect(updatedPlaylistObject.songs, actualPlaylist.songs);
+});
+
+test('Test #9) Getting all Playlists in the Database', async () => {
+    const expectedPlaylists = [
+        {
+            id: '68f526c1ec1ea2ad00a6fae0',
+            name: 'Test Playlist',
+            ownerEmail: 'joe@shmo.com',
+            songs: [
+                {
+                    title: 'Across the Universe',
+                    artist: 'The Beatles',
+                    year: 1969,
+                    youTubeId: '90M60PzmxEE'
+                }
+            ]
+        },
+        {
+            id: '68f526c1ec1ea2ad00a6fae1',
+            name: 'Test Playlist 2',
+            ownerEmail: 'joe@shmo.com',
+            songs: [
+                {
+                    title: 'Across the Universe',
+                    artist: 'The Beatles',
+                    year: 1969,
+                    youTubeId: '90M60PzmxEE'
+                }
+            ]
+        }
+    ];
+
+
+
+    const actualPlaylists = await dbManager.getAllPlaylists();
+    expect(actualPlaylists).toBeDefined();
+
+    expect(expectedPlaylists.length, actualPlaylists.length);
+    for (let i = 0; i < expectedPlaylists.length; i++) {
+        expect(expectedPlaylists[i].name, actualPlaylists[i].name);
+        expect(expectedPlaylists[i].ownerEmail, actualPlaylists[i].ownerEmail);
+        expect(expectedPlaylists[i].songs, actualPlaylists[i].songs);
+    }
+});
+
+test('Test #10) Getting playlist pairs in the Database', async () => {
+    const expectedPlaylistPairs = [
+        {
+            ownerEmail: 'joe@shmo.com',
+            playlistId: '68f526c1ec1ea2ad00a6fae0'
+        },
+        {
+            ownerEmail: 'joe@shmo.com',
+            playlistId: '68f526c1ec1ea2ad00a6fae1'
+        }
+    ];
+
+    const actualPlaylistPairs = await dbManager.getPlaylistPairs('joe@shmo.com');
+    expect(actualPlaylistPairs).toBeDefined();
+
+    expect(expectedPlaylistPairs.length, actualPlaylistPairs.length);
+    for (let i = 0; i < expectedPlaylistPairs.length; i++) {
+        expect(expectedPlaylistPairs[i].ownerEmail, actualPlaylistPairs[i].ownerEmail);
+        expect(expectedPlaylistPairs[i].playlistId, actualPlaylistPairs[i].playlistId);
+    }
+});
+
+test('Test #11) Getting a user by email in the Database', async () => {
+    const expectedUser = {
+        email: 'joe@shmo.com',
+        firstName: 'Joe',
+        lastName: 'Shmo',
+        passwordHash: '$2a$10$dPEwsAVi1ojv2RfxxTpZjuKSAbep7zEKb5myegm.ATbQ4sJk4agGu',
+        id: '6909464266375da1f03dcece'
+    };
+
+    const actualUser = await dbManager.getUserByEmail(expectedUser.email);
+
+    expect(expectedUser.firstName, actualUser.firstName);
+    expect(expectedUser.lastName, actualUser.lastName);
 });
