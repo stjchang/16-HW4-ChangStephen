@@ -43,7 +43,7 @@ class MongoDBManager extends DatabaseManager {
     async getUserById(id) {
         // Convert string id to ObjectId if needed
         const objectId = id instanceof mongoose.Types.ObjectId ? id : new mongoose.Types.ObjectId(id);
-        return await User.findById(objectId).lean();
+        return await User.findById(objectId);
     }
 
     async createUser(userObject) {
@@ -53,7 +53,7 @@ class MongoDBManager extends DatabaseManager {
 
     async updateUserById(id, userObject) {
         try {
-            return await User.findByIdAndUpdate(id, userObject, { new: true }).lean();
+            return await User.findByIdAndUpdate(id, userObject, { new: true });
         } catch (error) {
             console.error('Error updating user:', error);
             throw error;
@@ -107,7 +107,7 @@ class MongoDBManager extends DatabaseManager {
     }
 
     async updatePlaylistById(id, playlistObject) {
-        return await Playlist.findByIdAndUpdate(id, playlistObject, { new: true }).lean();
+        return await Playlist.findByIdAndUpdate(id, playlistObject, { new: true });
     }
 }
 
